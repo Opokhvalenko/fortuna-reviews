@@ -1,0 +1,135 @@
+@use '../mixins' as *;
+@use '../variables' as *;
+
+.reviews-background-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: $spacing-lg 0;
+  background-image: url('/src/images/fon1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.reviews-section {
+  position: relative;
+  flex-direction: row;
+  gap: 0;
+  width: 100%;
+  max-width: calc(
+    (3 * #{$card-base-width} + 2 * #{$spacing-sm}) +
+      (2 * #{$arrow-width-desktop}) + (2 * #{$spacing-sm})
+  );
+  margin: 0 auto;
+  padding: 0 $spacing-sm;
+  overflow: hidden;
+
+  @include flex-center;
+
+  @include responsive(mobile-lg) {
+    max-width: calc(100vw - (2 * #{$spacing-mobile-side}));
+    padding: 0;
+  }
+
+  @include responsive(tablet-sm) {
+    max-width: calc(100vw - (2 * #{$spacing-xs}));
+    padding: 0;
+  }
+
+  @include responsive(tablet-md) {
+    max-width: calc(
+      #{$card-base-width} + (2 * #{$arrow-width-tablet-md}) +
+        (2 * #{$spacing-sm})
+    );
+    padding: 0 $spacing-sm;
+  }
+
+  @include responsive(desktop-lg) {
+    max-width: calc(
+      (2 * #{$card-base-width} + 1 * #{$spacing-sm}) +
+        (2 * #{$arrow-width-desktop}) + (2 * #{$spacing-sm})
+    );
+    padding: 0 $spacing-sm;
+  }
+
+  @include responsive(desktop-xl) {
+    max-width: calc(
+      (3 * #{$card-base-width} + 2 * #{$spacing-sm}) +
+        (2 * #{$arrow-width-desktop}) + (2 * #{$spacing-sm})
+    );
+    padding: 0 $spacing-sm;
+  }
+}
+
+.reviews-carousel {
+  position: relative;
+  width: 100%;
+  max-width: calc(100% - (2 * #{$arrow-width-tablet-sm}));
+  padding: 10px 0;
+  overflow: hidden;
+
+  @include responsive(mobile-lg) {
+    max-width: calc(100% - (2 * #{$arrow-width-tablet-sm}));
+  }
+
+  @include responsive(tablet-sm) {
+    max-width: calc(100% - (2 * #{$arrow-width-tablet-sm}));
+  }
+
+  @include responsive(tablet-md) {
+    max-width: $card-base-width;
+  }
+
+  @include responsive(desktop-lg) {
+    max-width: calc(2 * #{$card-base-width} + 1 * #{$spacing-sm});
+  }
+
+  @include responsive(desktop-xl) {
+    max-width: calc(3 * #{$card-base-width} + 2 * #{$spacing-sm});
+  }
+
+  &__track {
+    display: flex;
+    gap: $spacing-sm;
+    transition: transform $transition-speed $transition-cubic;
+  }
+}
+
+.pagination {
+  margin-top: $spacing-lg;
+  gap: 12px;
+
+  @include flex-center;
+
+  @include responsive(tablet-sm) {
+    margin-top: $spacing-sm;
+  }
+
+  @include responsive(mobile-lg) {
+    margin-top: $spacing-xs;
+    gap: 8px;
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: $color-pagination-inactive;
+    cursor: pointer;
+    transition:
+      background-color 0.3s ease,
+      transform 0.3s ease;
+
+    @include responsive(mobile-lg) {
+      width: 8px;
+      height: 8px;
+    }
+
+    &--active {
+      background-color: $color-primary;
+      transform: scale(1.3);
+    }
+  }
+}

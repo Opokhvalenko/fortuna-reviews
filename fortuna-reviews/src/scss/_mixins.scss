@@ -1,0 +1,62 @@
+@use 'variables' as *;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin card-shadow {
+  box-shadow: $card-shadow;
+}
+
+@mixin arrow-styles {
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    color 0.3s ease-in-out,
+    transform 0.3s ease-in-out,
+    background-color 0.3s ease;
+  box-sizing: border-box;
+  user-select: none;
+  outline: none;
+  flex-shrink: 0;
+
+  @include flex-center;
+}
+
+@mixin logo-style($height, $border-radius: null) {
+  display: block;
+  max-width: 100%;
+  height: $height;
+  object-fit: contain;
+
+  @if $border-radius {
+    border-radius: $border-radius;
+  }
+}
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == desktop-xl {
+    @media (width >= 1201px) {
+      @content;
+    }
+  } @else if $breakpoint == desktop-lg {
+    @media (width >= 993px) {
+      @content;
+    }
+  } @else if $breakpoint == tablet-md {
+    @media (width >= 769px) {
+      @content;
+    }
+  } @else if $breakpoint == tablet-sm {
+    @media (width >= 481px) {
+      @content;
+    }
+  } @else if $breakpoint == mobile-lg {
+    @media (width <= 480px) {
+      @content;
+    }
+  }
+}
